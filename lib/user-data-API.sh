@@ -3,8 +3,10 @@ yum update -y
 sudo su
 yum install -y git
 yum install -y ruby
-curl --silent --location https://rpm.nodesource.com/setup_16.x | bash
-yum -y install nodejs
+touch ~/.bashrc # this ensure the bashrc file is created
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
+source /.nvm/nvm.sh 
+nvm install 16
 
 git clone https://github.com/diarmuidoconnor/distributed-systems-express-moviesAPI
 cd distributed-systems-express-moviesAPI
@@ -14,5 +16,5 @@ npm run build
 export SEED_DB=true
 export SECRET=ilikecake
 export PORT=3000
-export MONGO_DB='mongodb+srv://readwriteuser:q1w2e3r4@doconnor-atlas-cluster.vddmf.mongodb.net/test?retryWrites=true&w=majority'
+export MONGO_DB=db-url
 npm run start:prod
